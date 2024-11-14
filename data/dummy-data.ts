@@ -334,4 +334,4 @@ export const MEALS = [
     true,
     true
   )
-];
+];0
