@@ -2,8 +2,13 @@ import { FlatList } from 'react-native';
 import { CATEGORIES } from '../data/dummy-data';
 import Category from '../models/category';
 import CategoryGridTile from '../components/CategoryGridTile';
+import { CategoriesScreenNavigationProp } from '../types/types';
 
-function CategoriesScreen({ navigation }) {
+type Props = {
+  navigation: CategoriesScreenNavigationProp;
+};
+
+function CategoriesScreen({ navigation }: Props) {
   const renderCategoryItem = (itemData: { item: Category }) => {
     const pressHandler = () => {
       navigation.navigate('MealsOverview');
