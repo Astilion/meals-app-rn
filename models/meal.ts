@@ -1,4 +1,4 @@
-type MealType = {
+export type MealType = {
   id: string;
   categoryIds: string[];
   title: string;
