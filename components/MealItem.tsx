@@ -10,6 +10,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types/types';
 import { MealType } from '../models/meal';
 import { useNavigation } from '@react-navigation/native';
+import MealDetails from './MealDetails';
 
 type NavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -22,7 +23,7 @@ const MealItem = ({ meal }: MealItemProps) => {
   const navigation = useNavigation<NavigationProp>();
 
   const selectMealItemHandler = () => {
-    navigation.navigate('MealDetail', { meal });
+    navigation.navigate('MealDetail', { mealId: meal.id });
   };
   return (
     <View style={styles.mealItem}>
@@ -36,15 +37,11 @@ const MealItem = ({ meal }: MealItemProps) => {
             <Image source={{ uri: meal.imageUrl }} style={styles.image} />
             <Text style={styles.title}>{meal.title}</Text>
           </View>
-          <View style={styles.details}>
-            <Text style={styles.detailItem}>{meal.duration} min</Text>
-            <Text style={styles.detailItem}>
-              {meal.complexity.toUpperCase()}
-            </Text>
-            <Text style={styles.detailItem}>
-              {meal.affordability.toUpperCase()}
-            </Text>
-          </View>
+          <MealDetails
+            duration={meal.duration}
+            affordability={meal.affordability}
+            complexity={meal.complexity}
+          />
         </View>
       </Pressable>
     </View>
@@ -78,16 +75,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 18,
     margin: 8,
-  },
-  details: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: 8,
-    justifyContent: 'center',
-  },
-  detailItem: {
-    marginHorizontal: 4,
-    fontSize: 12,
   },
   buttonPressed: {
     opacity: 0.5,

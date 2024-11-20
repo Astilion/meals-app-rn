@@ -4,7 +4,7 @@ import { MealType } from '../models/meal';
 export type RootStackParamList = {
   MealsCategories: undefined;
   MealsOverview: { categoryId: string };
-  MealDetail: { meal: MealType };
+  MealDetail: { mealId: string };
 };
 
 export type CategoriesScreenNavigationProp = NativeStackNavigationProp<
