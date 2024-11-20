@@ -6,17 +6,30 @@ import {
   StyleSheet,
   Platform,
 } from 'react-native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../types/types';
 import { MealType } from '../models/meal';
+import { useNavigation } from '@react-navigation/native';
 
+type NavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  'MealDetail'
+>;
 type MealItemProps = {
   meal: MealType;
 };
 const MealItem = ({ meal }: MealItemProps) => {
+  const navigation = useNavigation<NavigationProp>();
+
+  const selectMealItemHandler = () => {
+    navigation.navigate('MealDetail', { meal });
+  };
   return (
     <View style={styles.mealItem}>
       <Pressable
         android_ripple={{ color: '#ccc' }}
         style={({ pressed }) => (pressed ? styles.buttonPressed : null)}
+        onPress={selectMealItemHandler}
       >
         <View style={styles.innerContainer}>
           <View>
