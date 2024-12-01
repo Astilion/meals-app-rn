@@ -1,16 +1,36 @@
-import { View, StyleSheet, Text } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Text,
+  StyleProp,
+  ViewStyle,
+  TextStyle,
+} from 'react-native';
 
 export type MealDetailProps = {
   duration: number;
   affordability: 'affordable' | 'pricey' | 'luxurious';
   complexity: 'simple' | 'challenging' | 'hard';
+  style?: StyleProp<ViewStyle>;
+  textStyle?: StyleProp<TextStyle>;
 };
-function MealDetails({ duration, complexity, affordability, style, textStyle }: MealDetailProps) {
+
+function MealDetails({
+  duration,
+  complexity,
+  affordability,
+  style,
+  textStyle,
+}: MealDetailProps) {
   return (
     <View style={[styles.details, style]}>
       <Text style={[styles.detailItem, textStyle]}>{duration} min</Text>
-      <Text style={[styles.detailItem, textStyle]}>{complexity.toUpperCase()}</Text>
-      <Text style={[styles.detailItem, textStyle]}>{affordability.toUpperCase()}</Text>
+      <Text style={[styles.detailItem, textStyle]}>
+        {complexity.toUpperCase()}
+      </Text>
+      <Text style={[styles.detailItem, textStyle]}>
+        {affordability.toUpperCase()}
+      </Text>
     </View>
   );
 }
